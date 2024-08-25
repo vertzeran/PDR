@@ -1,0 +1,38 @@
+{
+    "preprocess_comment": "RIDI_ENU_250Hz_WS_150",
+    "preprocess_title": "RIDI_ENU_250Hz_WS_150",
+    "training_comment": "testing effect of window size res 50 epochs 1000",
+    "training_title": "testing effect of window size",
+    "main_dir": "/home/maint/git/walking_direction_estimation/",
+    "process_RIDI": true,
+    "process_SZ": false,
+    "process_TRC_1": false,
+    "test_on_RIDI": true,
+    "test_on_SZ": false,
+    "test_on_TRC": false,
+    "add_quat": true,
+    "RIDI_params": {
+        "dataset": "RIDI_ENU",
+        "dataset_location": "/data/Datasets/Navigation/RIDI_ENU_250hz_mixed_modes",
+        "window_size": 150,
+        "mode": "mixed",
+        "wind_size_for_heading_init": 1000,
+        "add_quat": true,
+        "traj_length_limit": null,
+        "walking_start_threshold": 1.0
+    },
+    "SZ_params": {
+        "dataset": "AI_PDR",
+        "dataset_location": "",
+        "window_size": 150,
+        "mode": "mixed",
+        "wind_size_for_heading_init": 1000,
+        "add_quat": true,
+        "traj_length_limit": null,
+        "walking_start_threshold": 3.0
+    },
+    "window_size": 150,
+    "LR": 0.0001,
+    "batch_size":512,
+    "epochs":1000
+}

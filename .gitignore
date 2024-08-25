@@ -1,0 +1,127 @@
+/scripts/[2] PCA/
+
+*.zip
+.idea
+**/.idea
+*~
+*.swp
+*.o
+*.cpp.o
+*.so
+*.pyc
+*.egg-info/
+__pycache__
+**/__pycache__
+*.exe
+*.xml
+*.ms
+.ipynb_checkpoints/
+
+# output images:
+*.jpg
+*.png
+*.bmp
+*.jpeg
+*.jfif
+*.JPG
+
+# Large \ binary files:
+*.pth
+*.mat
+*.pkl
+*.pdf
+*.html
+*.obj
+*.bin
+
+# C and C++ files (most of the time this are pre-compiled files that were downloaded):
+*.c
+*.h
+*.cpp
+*.hpp
+/scripts/trash/filtering_tutorial.py
+/scripts/trash/nothing.py
+/data/android rec/indoor_output_2021-11-04_13_41_24.csv
+/data/android rec/indoor_output_2021-11-25_10_06_33.csv
+/data/android rec/indoor_output_2021-11-25_11_00_36.csv
+/data/android rec/indoor_output_2021-11-25_11_01_20.csv
+/data/android rec/indoor_output_2021-11-25_11_09_02.csv
+/data/android rec/indoor_output_2021-11-25_11_14_42.csv
+/data/android rec/indoor_output_2021-12-23_09_28_25.csv
+/data/android rec/indoor_output_2021-12-28_14_25_46.csv
+/data/android rec/indoor_output_2021-12-30_09_17_47.csv
+/data/android rec/indoor_output_2021-12-30_11_47_50.csv
+/data/android rec/indoor_output_2021-12-30_12_38_39.csv
+/data/android rec/indoor_output_2022-01-02_09_38_19.csv
+/data/android rec/indoor_output_2022-01-02_09_38_46.csv
+/data/android rec/indoor_output_2022-01-02_15_19_08.csv
+/data/android rec/indoor_output_2022-01-02_19_47_33.csv
+/data/android rec/indoor_output_2022-01-02_19_51_19.csv
+/data/android rec/indoor_output_2022-01-04_10_38_30.csv
+/data/android rec/indoor_output_2022-01-04_12_12_19.csv
+/data/android rec/indoor_output_2022-01-04_13_27_50.csv
+/data/android rec/indoor_output_2022-01-04_16_09_26.csv
+/data/android rec/indoor_output_2022-01-04_16_15_26.csv
+/data/android rec/indoor_output_2022-01-04_18_04_35.csv
+/data/android rec/indoor_output_2022-01-04_18_08_41.csv
+/data/android rec/indoor_output_2022-01-04_18_11_58.csv
+/data/android rec/indoor_output_2022-01-04_18_15_48.csv
+/data/android rec/indoor_output_2022-01-04_18_32_14_yaw_movement.csv
+/scripts/trash/algo_performance_evaluation_debug.py
+/data/android rec/outdoor_output_2021-10-31_10_12_22_Eran_texting.csv
+/data/android rec/outdoor_output_2021-11-28_10_13_18_Eran_pocket.csv
+/data/android rec/outdoor_output_2022-08-01_18_09_33_Eran_swing.csv
+/data/XY_pairs/2023-02-28T16:19:19.890326RIDI mixed wind_size 200_RIDI_mixed_modes/test_segments_for_WDE.pickle
+/data/XY_pairs/2023-02-28T16:19:19.890326RIDI mixed wind_size 200_RIDI_mixed_modes/create_segments_log.log
+/delivery_version/data/XY_pairs/2023-02-21T15:08:09.773703RIDI_pocket_test/create_segments_log.log
+/delivery_version/data/XY_pairs/2023-02-21T15:34:40.131328RIDI_body_test/create_segments_log.log
+/delivery_version/data/XY_pairs/swing/create_segments_log.log
+/delivery_version.tar.gz
+/data/optimization_results/2023-02-28T16:25:45.353734optimization results on mixed, window size: 200_RIDI_mixed_modes/info_file.json
+/data/XY_pairs/2023-02-28T16:19:19.890326RIDI mixed wind_size 200_RIDI_mixed_modes/info_file.json
+/delivery_version/data/optimization_results/2023-02-21T15:09:51.745391optimization results on pocket, window size: 200test/info_file.json
+/delivery_version/data/optimization_results/2023-02-21T15:35:22.510473optimization results on body, window size: 200test/info_file.json
+/delivery_version/data/optimization_results/swing/info_file.json
+/delivery_version/data/XY_pairs/2023-02-21T15:08:09.773703RIDI_pocket_test/info_file.json
+/delivery_version/data/XY_pairs/2023-02-21T15:34:40.131328RIDI_body_test/info_file.json
+/delivery_version/data/XY_pairs/swing/info_file.json
+/data/optimization_results/2023-02-28T16:25:45.353734optimization results on mixed, window size: 200_RIDI_mixed_modes/traj/performance summary.xlsx
+/delivery_version/data/optimization_results/2023-02-21T15:09:51.745391optimization results on pocket, window size: 200test/traj/performance summary.xlsx
+/delivery_version/data/optimization_results/2023-02-21T15:35:22.510473optimization results on body, window size: 200test/traj/performance summary.xlsx
+/delivery_version/data/optimization_results/swing/traj_example/performance summary.xlsx
+/delivery_version/data/XY_pairs/2023-02-21T15:08:09.773703RIDI_pocket_test/test_segments_for_WDE.pickle
+/delivery_version/data/XY_pairs/2023-02-21T15:34:40.131328RIDI_body_test/test_segments_for_WDE.pickle
+/delivery_version/data/XY_pairs/swing/train_test_division_list.json
+/data/SBG_traj_lenths/trajectory_lengths.json
+/data/XY_pairs/2023-03-12T21_57_28.455080AI_PDR mixed wind_size 250_SZ_mixed_modes/create_segments_log.log
+/data/XY_pairs/2023-03-12T21_57_28.455080AI_PDR mixed wind_size 250_SZ_mixed_modes/info_file.json
+/data/XY_pairs/2023-03-12T21_57_28.455080AI_PDR mixed wind_size 250_SZ_mixed_modes/test.mat
+/data/XY_pairs/2023-03-12T21_57_28.455080AI_PDR mixed wind_size 250_SZ_mixed_modes/test_segments_for_WDE.pickle
+/data/XY_pairs/2023-03-12T21_57_28.455080AI_PDR mixed wind_size 250_SZ_mixed_modes/train.mat
+/data/XY_pairs/2023-03-13T10_36_14.465081AI_PDR mixed wind_size 250_SZ_mixed_modes/create_segments_log.log
+/data/XY_pairs/2023-03-13T10_36_14.465081AI_PDR mixed wind_size 250_SZ_mixed_modes/info_file.json
+/data/XY_pairs/2023-03-13T10_36_14.465081AI_PDR mixed wind_size 250_SZ_mixed_modes/test.mat
+/data/XY_pairs/2023-03-13T10_36_14.465081AI_PDR mixed wind_size 250_SZ_mixed_modes/test_segments_for_WDE.pickle
+/data/XY_pairs/2023-03-13T10_36_14.465081AI_PDR mixed wind_size 250_SZ_mixed_modes/train.mat
+/data/XY_pairs/2023-03-13T12_41_32.577892AI_PDR mixed wind_size 200_SZ_mixed_modes/info_file.json
+/data/XY_pairs/2023-03-13T12_41_32.577892AI_PDR mixed wind_size 200_SZ_mixed_modes/create_segments_log.log
+/data/XY_pairs/2023-03-13T12_41_32.577892AI_PDR mixed wind_size 200_SZ_mixed_modes/test.mat
+/data/XY_pairs/2023-03-13T12_41_32.577892AI_PDR mixed wind_size 200_SZ_mixed_modes/test_segments_for_WDE.pickle
+/data/XY_pairs/2023-03-13T12_41_32.577892AI_PDR mixed wind_size 200_SZ_mixed_modes/train.mat
+/data/XY_pairs/2023-03-14T10_01_28.040671AI_PDR mixed wind_size 200_SZ_mixed_modes/create_segments_log.log
+/data/XY_pairs/2023-03-14T10_01_28.040671AI_PDR mixed wind_size 200_SZ_mixed_modes/info_file.json
+/data/XY_pairs/2023-03-14T10_05_34.035198AI_PDR mixed wind_size 200_SZ_mixed_modes/create_segments_log.log
+/data/XY_pairs/2023-03-14T10_05_34.035198AI_PDR mixed wind_size 200_SZ_mixed_modes/info_file.json
+/data/optimization_results/2023-03-13T09:30:56.999354optimization results on mixed, window size: 250_SZ_mixed_modes/info_file.json
+/data/optimization_results/2023-03-13T11:54:13.910513optimization results on mixed, window size: 250_SZ_mixed_modes/info_file.json
+/data/optimization_results/2023-03-13T13:38:08.956312optimization results on mixed, window size: 200_SZ_mixed_modes/info_file.json
+/data/optimization_results/2023-03-14T10:58:19.953508optimization results on mixed, window size: 200_SZ_mixed_modes/info_file.json
+/scripts/a07_training_on_SZ_dataset/params.json
+/data/optimization_results/2023-03-13T09:30:56.999354optimization results on mixed, window size: 250_SZ_mixed_modes/traj/performance summary.xlsx
+/data/optimization_results/2023-03-13T11:54:13.910513optimization results on mixed, window size: 250_SZ_mixed_modes/traj/performance summary.xlsx
+/data/optimization_results/2023-03-13T13:38:08.956312optimization results on mixed, window size: 200_SZ_mixed_modes/traj/performance summary.xlsx
+/data/optimization_results/2023-03-14T10:58:19.953508optimization results on mixed, window size: 200_SZ_mixed_modes/traj/performance summary.xlsx
+/data/XY_pairs/2023-03-14T10_05_34.035198AI_PDR mixed wind_size 200_SZ_mixed_modes/test_segments_for_WDE.pickle
+/scripts/trash/traj_plot_debug.py
+/data/optimization_results/
+/data/XY_pairs/

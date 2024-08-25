@@ -1,0 +1,4 @@
+1. consider to start a13 from master and not a12 because its more mature
+2. see was is the dL error average. I suspect its not zero. this means we need to penalize the dl average.
+3. code still needs simplification separate general functions from project dedicated functions.
+4. to further improve long term performance: add an RNN block to the resnet model and train appropriately with long samples.

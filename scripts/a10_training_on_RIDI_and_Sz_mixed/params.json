@@ -1,0 +1,27 @@
+{
+    "comment": "RIDI & SZ combined",
+    "RIDI_params": {
+        "dataset": "RIDI_ENU",
+        "dataset_location": "",
+        "window_size": 250,
+        "mode": "mixed",
+        "wind_size_for_heading_init": 1000,
+        "add_quat": true,
+        "traj_length_limit": null,
+        "walking_start_threshold": 1.0
+    },
+    "SZ_params": {
+        "dataset": "AI_PDR",
+        "dataset_location": "",
+        "window_size": 250,
+        "mode": "mixed",
+        "wind_size_for_heading_init": 1000,
+        "add_quat": true,
+        "traj_length_limit": null,
+        "walking_start_threshold": 3.0
+    },
+    "window_size": 250,
+    "LR": 0.0001,
+    "batch_size":512,
+    "epochs":150
+}

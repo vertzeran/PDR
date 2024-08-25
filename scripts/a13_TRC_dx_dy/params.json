@@ -1,0 +1,44 @@
+{
+    "device": 0,
+    "resnet1d": true,
+    "preprocess_comment": "TRC#1, dx_dy, quaternion, no heading fix, mixed mode, window 200",
+    "training_title": "resnet18-rot6d-3outputs",
+    "main_dir": "/home/adam/git/walking_direction_estimation",
+    "process_RIDI": false,
+    "process_SZ": false,
+    "process_TRC_1": false,
+    "test_on_RIDI": false,
+    "test_on_SZ": false,
+    "test_on_TRC": true,
+
+    "add_quat": true,
+    "convert_quat_to_rot6d": true,
+
+    "resnet": 18,
+    "num_of_outputs": 3,
+    "loss": {
+        "name": "mse_loss_norm_loss",
+        "length": "mse_loss",
+        "direction": "norm_loss",
+        "direction_weight": "dl"
+    },
+    "loss_": {
+        "name": "norm_loss_with_length_mse"
+    },
+    "window_size": 200,
+    "LR": 0.01,
+    "weight_decay": 1e-5,
+    "milestones": [200, 400],
+    "batch_size": 512,
+    "epochs": 500,
+
+    "TRC_params": {
+        "processed_data_folder": "/home/adam/git/walking_direction_estimation/data/XY_pairs/RIDI_ENU_and_SZ_WS_and_TRC#1 mixed wind_size 200test",
+        "processed_data_folder_": "/home/adam/git/walking_direction_estimation/data/XY_pairs/2023-03-30T17_31_56.289009_RIDI_ENU_and_SZ_WS_200",
+        "max_dl": 5.0,
+        "mode": "mixed",
+        "win_size_for_heading_init": 1000,
+        "traj_length_limit": null,
+        "walking_start_threshold": 1.0
+    }
+}
