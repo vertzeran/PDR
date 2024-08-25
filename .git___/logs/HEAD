@@ -1,7 +1,0 @@
-0000000000000000000000000000000000000000 ccbe89920850005267e1f029dc33a39de7f448c9 Eran Vertzberger <eran.vertzberger@huawei.com> 1678866571 +0200	clone: from https://cyclops.inhuawei.com/eran.vertzberger/walking_direction_estimation.git
-ccbe89920850005267e1f029dc33a39de7f448c9 ccbe89920850005267e1f029dc33a39de7f448c9 Eran Vertzberger <eran.vertzberger@huawei.com> 1678866639 +0200	checkout: moving from master to testing_git_on_laptop
-ccbe89920850005267e1f029dc33a39de7f448c9 9a08bd260ba08022f6094150557f14f29515fe73 Eran Vertzberger <eran.vertzberger@huawei.com> 1678867093 +0200	commit: testing
-9a08bd260ba08022f6094150557f14f29515fe73 ccbe89920850005267e1f029dc33a39de7f448c9 Eran Vertzberger <eran.vertzberger@huawei.com> 1679218252 +0200	checkout: moving from testing_git_on_laptop to master
-ccbe89920850005267e1f029dc33a39de7f448c9 239cd56961f940d22bcea5c591fa1c9329faeb49 Eran Vertzberger <eran.vertzberger@huawei.com> 1679218289 +0200	pull: Fast-forward
-239cd56961f940d22bcea5c591fa1c9329faeb49 06b84ea666a23a9eb0da3ad645bf24a1d811cbf4 Eran Vertzberger <eran.vertzberger@huawei.com> 1685889736 +0300	pull: Fast-forward
-06b84ea666a23a9eb0da3ad645bf24a1d811cbf4 cf1716d8fbdc82b8c979be71ce36ecadb8420348 Eran Vertzberger <eran.vertzberger@huawei.com> 1685890229 +0300	checkout: moving from master to developement
