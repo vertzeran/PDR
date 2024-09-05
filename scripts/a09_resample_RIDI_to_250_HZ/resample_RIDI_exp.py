@@ -139,7 +139,7 @@ def compare_positions_of_two_experiments(exp1: utils.Classes.RidiExp_ENU, exp2: 
 
 
 if __name__ == '__main__':
-    exp_path = r"/data/Datasets/Navigation/RIDI_dataset_train_test_ENU/RIDI - Text - Test/huayi2.csv"
+    exp_path = r"C:\Users\EranVertzberger\PHD\RIDI dataset Train-Test\RIDI - Text - Test\huayi2.csv"
     head, tail = ntpath.split(exp_path)
     root_dir = head
     file_name = tail
@@ -152,7 +152,7 @@ if __name__ == '__main__':
     new_path = join(os.getcwd(), 'test_resampling.csv')
     exp_new.save_csv(new_path)
     # exp.PlotSensors()
-    calculate_AHRS = False
+    calculate_AHRS = True
     if calculate_AHRS:
         CalcResultsOnFile(new_path, 'RIDI_ENU', override=True, GT=None)
     AHRS_results_files = exp_new.check_for_AHRS_results()

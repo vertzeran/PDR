@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.spatial.transform import Rotation as Rotation
+from scipy.spatial.transform import Slerp
 import os
 import tkinter.filedialog
 import ntpath
@@ -1867,4 +1868,45 @@ class RoninExp(AhrsExp):
         self.Acc.y = acc_calib[:, 1]
         self.Acc.z = acc_calib[:, 2]
 
-        self.Frame = 'NED'
+        self.Frame = 'ENU'
+    def resample(self, new_SF):
+        t = self.Time_IMU
+        num_of_samples = int((t[-1] - t[0]) * new_SF)
+        self.NumberOfSamples_IMU = num_of_samples
+        self.NumberOfSamples_GT = num_of_samples
+        new_t = np.linspace(t[0], t[-1], num=num_of_samples, endpoint=True)
+        # rotation
+
+        slerp = Slerp(self.Time_GT, self.Rot)
+        self.Rot = slerp(new_t)
+        EulerArray = self.Rot.as_euler('ZYX', degrees=False)  # ZYX is capital important!!!
+        self.Psi = Functions.ContinuousAngle(EulerArray[:, 0])
+        self.initial_heading = self.Psi[0]
+        self.Theta = Functions.ContinuousAngle(EulerArray[:, 1])
+        self.Phi = Functions.ContinuousAngle(EulerArray[:, 2])
+
+        # Euler
+        # self.Psi = np.interp(new_t, self.Time_IMU, self.Psi)
+        # self.Theta = np.interp(new_t, self.Time_IMU, self.Theta)
+        # self.Phi = np.interp(new_t, self.Time_IMU, self.Phi)
+        # euler_array = np.vstack([self.Psi, self.Theta, self.Phi]).T
+        # self.Rot = Rotation.from_euler('ZYX', euler_array, degrees=False)
+
+        # IMU
+        self.Gyro.x = np.interp(new_t, self.Time_IMU, self.Gyro.x)
+        self.Gyro.y = np.interp(new_t, self.Time_IMU, self.Gyro.y)
+        self.Gyro.z = np.interp(new_t, self.Time_IMU, self.Gyro.z)
+
+        self.Acc.x = np.interp(new_t, self.Time_IMU, self.Acc.x)
+        self.Acc.y = np.interp(new_t, self.Time_IMU, self.Acc.y)
+        self.Acc.z = np.interp(new_t, self.Time_IMU, self.Acc.z)
+
+        # pos
+        self.Pos.x = np.interp(new_t, self.Time_IMU, self.Pos.x)
+        self.Pos.y = np.interp(new_t, self.Time_IMU, self.Pos.y)
+        self.Pos.z = np.interp(new_t, self.Time_IMU, self.Pos.z)
+
+        # time vectors
+        self.Time_IMU = new_t
+        self.Time_GT = new_t
+        self.dt = np.mean(np.diff(self.Time_IMU))
