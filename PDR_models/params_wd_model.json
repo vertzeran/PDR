@@ -1,0 +1,67 @@
+{
+    "device": 0,
+    "resnet1d": true,
+    "preprocess_comment": "wd, Q, SZ + RIDI, window 200",
+    "training_title": "V4 resnet18-Q-wd-SZ+RIDI+TRC-norm_loss",
+    "main_dir": "/home/maint/git/walking_direction_estimation",
+    "process_RIDI": false,
+    "process_SZ": false,
+    "process_TRC_1": false,
+    "test_on_RIDI": true,
+    "test_on_SZ": true,
+    "test_on_TRC": true,
+
+    "add_quat": true,
+    "convert_quat_to_rot6d": true,
+
+    "resnet": 18,
+    "wd_loss": "norm_loss",
+    "wd_loss_weight": "dl",
+    "normalize_vector": true,
+
+    "window_size": 200,
+    "LR": 1e-3,
+    "weight_decay": 1e-4,
+    "milestones": [50, 300],
+    "batch_size": 512,
+    "epochs": 500,
+
+    "TRC_params": {
+        "processed_data_folder_all": "/home/adam/git/walking_direction_estimation/data/XY_pairs/RIDI_ENU_SZ_TRC1_fixed_heading_WS200_mixed_start_th=0",
+        "processed_data_folder_sz+ridi": "/home/adam/git/walking_direction_estimation/data/XY_pairs/RIDI_ENU_SZ_WS200_mixed",
+        "processed_data_folder": "/home/maint/git/walking_direction_estimation/data/XY_pairs/RIDI_ENU_SZ_TRC1_fixed_heading_WS200_mixed",
+        "heading_fix": true,
+        "max_dl": 2.5,
+        "mode": "mixed",
+        "win_size_for_heading_init": 1000,
+        "traj_length_limit": null,
+        "walking_start_threshold": 1.0
+    },
+    "Tunnel_params": {
+        "max_dl": 2.5,
+        "mode": "mixed",
+        "win_size_for_heading_init": 1000,
+        "traj_length_limit": null,
+        "walking_start_threshold": 1.0
+    },
+    "RIDI_params": {
+        "dataset": "RIDI_ENU",
+        "dataset_location": "/data/Datasets/Navigation/RIDI_ENU_250hz_mixed_modes",
+        "window_size": 200,
+        "mode": "mixed",
+        "wind_size_for_heading_init": 1000,
+        "add_quat": true,
+        "traj_length_limit": null,
+        "walking_start_threshold": 1.0
+    },
+    "SZ_params": {
+        "dataset": "AI_PDR",
+        "dataset_location": "",
+        "window_size": 200,
+        "mode": "mixed",
+        "wind_size_for_heading_init": 1000,
+        "add_quat": true,
+        "traj_length_limit": null,
+        "walking_start_threshold": 3.0
+    }
+}
