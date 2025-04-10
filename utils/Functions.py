@@ -630,3 +630,4 @@ def rotation_matrix_to_r6d(r):
     :return: 6D vector array of shape [batch_size, 6].
     """
     return r.reshape(-1, 3, 3)[:, :, :2].transpose((0, 2, 1)).reshape(-1, 6)
+

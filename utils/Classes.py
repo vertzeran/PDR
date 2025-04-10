@@ -1845,7 +1845,7 @@ class RoninExp(AhrsExp):
         self.Time_GT = (time - time[0]) #* 1e-9
         self.NumberOfSamples_IMU = self.Time_IMU.shape[0]
         self.NumberOfSamples_GT = self.Time_GT.shape[0]
-        self.IMU_valid_idx = list(range(self.NumberOfSamples_IMU))
+        # self.IMU_valid_idx = list(range(self.NumberOfSamples_IMU)) // no reason for this at this point
         self.dt = np.mean(np.diff(self.Time_IMU))
 
         self.Pos.x = np.array(tango_pos)[:, 0]
