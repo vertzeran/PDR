@@ -15,7 +15,7 @@ from scipy.spatial.transform import Rotation as Rotation
 if __name__ == '__main__':
     data_path = 'C:\\Users\\EranVertzberger\\PHD\\ronin_dataset\\dataset\\train_dataset_1\\a000_10'
     exp = Classes.RoninExp(data_path)
-    exp.SegmentScenario([0, 500])
+    exp.SegmentScenario([0, 10])
     exp_resampled = exp.clone()
     print('resampling')
     exp_resampled.resample(new_SF=250)
@@ -23,5 +23,5 @@ if __name__ == '__main__':
 
     print('performing AHRS analysis on: \n' + exp_resampled.Path)
     AAE_AHRS.run_exp(exp=exp_resampled, return_grv=True, return_euler=True,
-                                         save_results_to_file=True, visualize=False)
+                                         save_results_to_file=True, visualize=True)
     plt.show()

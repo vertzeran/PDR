@@ -144,7 +144,7 @@ class AtitudeEstimator:
                 res_visualization.plot_errors = True
                 res_visualization.plot_heading = True
                 e_att = Functions.att_error(phi_e, theta_e)
-                print(exp.Path + '/' + exp.FileName + "\n" + "att. error = " + str(e_att))
+                print(exp.Path + '/' + exp.FileName + "\n" + "att. error = " + str(e_att) + " [rad]")
                 res_visualization.plot_fig()
             if return_grv:
                 fig = plt.figure('Gravity Plot')

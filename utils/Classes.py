@@ -66,6 +66,7 @@ class AhrsExp():
         self.Path = None
         self.FileName = None
         self.valid = None
+        self.g = 9.81
 
     def PlotAngles(self):
         fig = plt.figure('Euler Angles Plot')
@@ -288,7 +289,7 @@ class AhrsExp():
                     AHRS_Results.append(item)
         return AHRS_Results
 
-    def define_walking_start_idx(self, th=1):
+    def define_walking_start_idx(self, th=1, plot_res=False):
         # dP_angles, dP_vectors = self.calc_walking_direction(window_size=1)
         # dL = np.linalg.norm(dP_vectors, axis=1)
         method = 'distance_for_origin'  # could be: 'accumulated_trajectory_length'
@@ -300,6 +301,14 @@ class AhrsExp():
             pos = self.Pos.arr() - self.Pos.arr()[0]
             pos_norm = np.linalg.norm(pos, axis=1)
             self.index_of_walking_start = next(i for i in range(pos_norm.shape[0]) if pos_norm[i] > th)
+            if plot_res:
+                plt.figure()
+                plt.title('walking start identification t = ' + str(self.Time_IMU[self.index_of_walking_start]))
+                plt.plot(pos_norm)
+                plt.scatter(self.index_of_walking_start, pos_norm[self.index_of_walking_start], s=50, marker='x', color='red')
+                plt.axhline(y=th, color='gray', linestyle='--', linewidth=1)
+                plt.grid(True)
+
 
     def initialize_WD_angle(self, wind_size_for_heading_init=750, plot_results=False):
         # index_of_walking_start is initialized is pre-calculated or zero consider calculating here
@@ -1189,9 +1198,9 @@ class Euler_angles_plot():
         # assert self.ref["pitch"].shape == self.estimates[est]["pitch"].shape
         # assert self.ref["heading"].shape == self.estimates[est]["heading"].shape
         if self.ref["time"].shape == self.estimates[est]["time"].shape:
-            self.estimates[est]["roll_error"] = self.ref["roll"] - self.estimates[est]["roll"]
-            self.estimates[est]["pitch_error"] = self.ref["pitch"] - self.estimates[est]["pitch"]
-            self.estimates[est]["heading_error"] = self.ref["heading"] - self.estimates[est]["heading"]
+            self.estimates[est]["roll_error"] = Functions.FoldAngles(self.ref["roll"] - self.estimates[est]["roll"])
+            self.estimates[est]["pitch_error"] = Functions.FoldAngles(self.ref["pitch"] - self.estimates[est]["pitch"])
+            self.estimates[est]["heading_error"] = Functions.FoldAngles(self.ref["heading"] - self.estimates[est]["heading"])
             self.estimates[est]["errors_calculated"] = True
         else:
             # interpulate estimates to GT time samples
@@ -1207,10 +1216,11 @@ class Euler_angles_plot():
             psi_hat_interp = np.interp(x=t_ref, xp=t_est, fp=psi_hat)
             theta_hat_interp = np.interp(x=t_ref, xp=t_est, fp=theta_hat)
             phi_hat_interp = np.interp(x=t_ref, xp=t_est, fp=phi_hat)
-            self.estimates[est]["roll_error"] = phi - phi_hat_interp
-            self.estimates[est]["pitch_error"] = theta - theta_hat_interp
-            self.estimates[est]["heading_error"] = psi - psi_hat_interp
+            self.estimates[est]["roll_error"] = Functions.FoldAngles(phi - phi_hat_interp)
+            self.estimates[est]["pitch_error"] = Functions.FoldAngles(theta - theta_hat_interp)
+            self.estimates[est]["heading_error"] = Functions.FoldAngles(psi - psi_hat_interp)
             self.estimates[est]["errors_calculated"] = True
+
 
     def plot_fig(self):
         # plt.close('Euler Angles Plot')
@@ -1853,20 +1863,41 @@ class RoninExp(AhrsExp):
         self.Pos.z = np.array(tango_pos)[:, 2]
         #  self.QuatArray = np.array([grv_qx, grv_qy, grv_qz, grv_qw]).T  # size is nX4
         QuatArray = np.array([ori[:, 1], ori[:, 2], ori[:, 3], ori[:,0]]).T  # size is nX4 Transfered to ned
-        self.Rot = Rotation.from_quat(QuatArray)
+        self.Rot = Rotation.from_quat(QuatArray) # Rnb
         EulerArray = self.Rot.as_euler('ZYX', degrees=False)  # ZYX is capital important!!!
         self.Psi = Functions.ContinuousAngle(EulerArray[:, 0])
         self.initial_heading = self.Psi[0]
         self.Theta = Functions.ContinuousAngle(EulerArray[:, 1])
         self.Phi = Functions.ContinuousAngle(EulerArray[:, 2])
 
-        self.Gyro.x = gyro_calib[:, 0]
-        self.Gyro.y = gyro_calib[:, 1]
-        self.Gyro.z = gyro_calib[:, 2]
+        gn = np.array([0, 0, 1]) * self.g
+        Rot_bn = [R.inv() for R in self.Rot]
+        grv_arr = Functions.transform_vectors(gn, Rot_bn)
+        self.Grv.x = grv_arr[:, 0]
+        self.Grv.y = grv_arr[:, 1]
+        self.Grv.z = grv_arr[:, 2]
+        use_calibrated_signals = True
+        if use_calibrated_signals:
+            self.Gyro.x = gyro_calib[:, 0]
+            self.Gyro.y = gyro_calib[:, 1]
+            self.Gyro.z = gyro_calib[:, 2]
 
-        self.Acc.x = acc_calib[:, 0]
-        self.Acc.y = acc_calib[:, 1]
-        self.Acc.z = acc_calib[:, 2]
+            self.Acc.x = acc_calib[:, 0]
+            self.Acc.y = acc_calib[:, 1]
+            self.Acc.z = acc_calib[:, 2]
+        else:
+            self.Gyro.x = gyro_uncalib[:, 0]
+            self.Gyro.y = gyro_uncalib[:, 1]
+            self.Gyro.z = gyro_uncalib[:, 2]
+
+            self.Acc.x = acce_uncalib[:, 0]
+            self.Acc.y = acce_uncalib[:, 1]
+            self.Acc.z = acce_uncalib[:, 2]
+
+
+        self.LinAcc.x = self.Acc.x - self.Grv.x
+        self.LinAcc.y = self.Acc.y - self.Grv.y
+        self.LinAcc.z = self.Acc.z - self.Grv.z
 
         self.Frame = 'ENU'
     def resample(self, new_SF):
@@ -1905,6 +1936,18 @@ class RoninExp(AhrsExp):
         self.Pos.x = np.interp(new_t, self.Time_IMU, self.Pos.x)
         self.Pos.y = np.interp(new_t, self.Time_IMU, self.Pos.y)
         self.Pos.z = np.interp(new_t, self.Time_IMU, self.Pos.z)
+
+        # specific force recalculation
+        gn = np.array([0, 0, 1]) * self.g
+        Rot_bn = [R.inv() for R in self.Rot]
+        grv_arr = Functions.transform_vectors(gn, Rot_bn)
+        self.Grv.x = grv_arr[:, 0]
+        self.Grv.y = grv_arr[:, 1]
+        self.Grv.z = grv_arr[:, 2]
+
+        self.LinAcc.x = self.Acc.x - self.Grv.x
+        self.LinAcc.y = self.Acc.y - self.Grv.y
+        self.LinAcc.z = self.Acc.z - self.Grv.z
 
         # time vectors
         self.Time_IMU = new_t
